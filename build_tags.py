@@ -32,11 +32,13 @@ def getTaggers():
                         try:
                             # Try and load the found module and access the tagger
                             module = imp.load_module(tagger_dir, file_handle, pathname, descript)
-                            # Add the tagger to the tagger_list and add its path to sys.path
-                            sys.path.append(os.path.abspath(os.path.split(pathname)[0]))
-                            tagger_list.append(module.getTagger())
-                        except:
-                            print 'Something happened in {0}'.format(pathname)
+                            # Test to see if it has a getTagger function
+                            if 'getTagger' in dir(module):
+                                # Add the tagger to the tagger_list and add its path to sys.path
+                                sys.path.append(os.path.abspath(os.path.split(pathname)[0]))
+                                tagger_list.append(module.getTagger())
+                            else:
+                                print 'Found a module, but its not a tagger at: {0}'.format(pathname)
                         finally:
                             file_handle.close()
 
