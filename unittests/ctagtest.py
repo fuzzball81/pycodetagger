@@ -25,5 +25,11 @@ class TestGetFileTypes(unittest.TestCase):
         self.assertNotEqual(0, len(data))
 
 
+class TestParseFiles(unittest.TestCase):
+
+    def test_none_argument_no_throw(self):
+        tagger = ctagger.CTagger()
+        self.assertEqual(0, tagger.parseFiles(None))
+
 if __name__ == '__main__':
     unittest.main()
