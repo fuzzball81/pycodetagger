@@ -4,7 +4,8 @@ import unittest
 import os
 import sys
 
-sys.path.append(os.path.abspath('../taggers/c_cpp'))
+sys.path.extend([os.path.abspath('../taggers/c_cpp'),
+                 os.path.abspath('./taggers/c_cpp')])  # NOQA
 
 import ctagger
 
